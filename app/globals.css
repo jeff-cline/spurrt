@@ -12,6 +12,11 @@
   --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
 html,
 body {
   background-color: var(--color-ink);
