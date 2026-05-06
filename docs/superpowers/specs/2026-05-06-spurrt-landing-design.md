@@ -19,13 +19,21 @@ A marketing landing page for **spurrt.com** — a single-page site that explains
 ## Non-goals (explicitly out of scope for Phase 1)
 
 - No user accounts, login, or roles.
-- No actual SPURRT ledger, escrow, or transactions.
+- No actual spurrt ledger, escrow, or transactions.
 - No marketplace browsing, talent board, or opportunities flow.
 - No crypto integration, Lives currency, or valuation engine.
 - No admin panel.
 - No CMS — content is in code; we'll move to a CMS only if updates become frequent.
 
 These are Phases 2–5; each gets its own spec.
+
+## Brand naming (locked)
+
+- **Spurrt** (capitalized) — the company / platform / brand. Used as a proper noun.
+- **spurrt / spurrts** (lowercase) — the currency unit. Treated like "dollar / dollars." Lowercase even mid-sentence; only capitalize at sentence start.
+- **Spurrts to Success** (Title Case) — the product feature name for the retention pool.
+- The acronym **SPURTT** (two T's) is dropped from all public-facing copy. It does not match the domain `spurrt.com` (two R's, one T) and creates confusion. If a backronym is ever needed internally, it can be reconstructed to fit S-P-U-R-R-T, but Phase 1 doesn't surface one.
+- All copy, code identifiers, env vars, and content authoring must follow these rules.
 
 ## Audience & message
 
@@ -46,13 +54,13 @@ The hero speaks to both audiences simultaneously via a split-screen layout. Belo
    - Right panel: benefactor-facing headline, one-sentence subhead, **Become a Benefactor** CTA.
    - Unifying tagline ribbon spans the full width below both panels.
 
-3. **What is a SPURRT? (currency explainer).**
-   - One enormous number: **1 SPURRT = $444 today.**
+3. **What is a spurrt? (currency explainer).**
+   - One enormous number: **1 spurrt = $444 today.**
    - Three pills underneath: *Backed by a $10M pool* · *Redeemable for trips, equity, crypto, products* · *Tradeable between members.*
    - Tone: confident, simple, no jargon.
 
 4. **How it works — two parallel rails.**
-   - Talent rail: *Get matched → Deliver → Earn SPURRTs.*
+   - Talent rail: *Get matched → Deliver → Earn spurrts.*
    - Benefactor rail: *Fund the pool → Post opportunity → Access talent.*
    - The two rails visually meet at a central node labeled **The Marketplace**.
 
@@ -61,9 +69,9 @@ The hero speaks to both audiences simultaneously via a split-screen layout. Belo
    - Each tile shows a "Coming online" badge.
    - Click any tile → email capture modal scoped to that category interest.
 
-6. **SPURRTs to Success (retention kicker).**
-   - Headline: *Hold SPURRTs, earn more SPURRTs.*
-   - Body: 50% of marketplace SPURRTs are deposited into the Success Pool. At the end of each goal period, every active holder gets a proportional payout. Then the pool resets.
+6. **Spurrts to Success (retention kicker).**
+   - Headline: *Hold spurrts, earn more spurrts.*
+   - Body: 50% of marketplace spurrts are deposited into the Success Pool. At the end of each goal period, every active holder gets a proportional payout. Then the pool resets.
    - One supporting line: *Why this exists — to reward the people who stay in the ecosystem, not just transact through it.*
 
 7. **The Manifesto.**
@@ -80,9 +88,9 @@ The hero speaks to both audiences simultaneously via a split-screen layout. Belo
    - Above the buttons: counter ("X talent, Y benefactors on the waitlist") — fakeable for launch, real once we have data.
 
 9. **FAQ.** Six questions:
-   - What is a SPURRT?
+   - What is a spurrt?
    - Who qualifies as Talent?
-   - Can I cash out my SPURRTs?
+   - Can I cash out my spurrts?
    - What's the difference between a Benefactor and a Supplier?
    - What are Lives, and how do they relate to crypto?
    - When does the platform open?
@@ -149,7 +157,7 @@ spurrt.com/
 
 ## Open decisions deferred to Phase 2+
 
-- Whether the SPURRT value ($444) and the $10M pool size are displayed as live values (admin-controlled) or hardcoded for the marketing site. Phase 1: hardcoded. Phase 2: pull from an admin-controlled source.
+- Whether the spurrt value ($444) and the $10M pool size are displayed as live values (admin-controlled) or hardcoded for the marketing site. Phase 1: hardcoded. Phase 2: pull from an admin-controlled source.
 - Talent application flow beyond email capture (what's the next touch — auto-reply? application form? Calendly?).
 - Whether the marketplace category tiles link anywhere or stay as previews.
 
