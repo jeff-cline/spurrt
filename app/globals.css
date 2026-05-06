@@ -2,6 +2,32 @@
 
 @theme {
   --color-ink: #0a0a0b;
+  --color-ink-soft: #15151a;
   --color-cream: #f5f0e6;
+  --color-cream-dim: #b8b3a8;
   --color-gold: #c9a96a;
+  --color-gold-soft: #8a7344;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html,
+body {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ink);
 }
