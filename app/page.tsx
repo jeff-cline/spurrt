@@ -4,6 +4,7 @@ import { CurrencyExplainer } from "@/components/currency-explainer";
 import { HowItWorks } from "@/components/how-it-works";
 import { MarketplacePreview } from "@/components/marketplace-preview";
 import { SuccessPool } from "@/components/success-pool";
+import { Manifesto } from "@/components/manifesto";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <HowItWorks />
         <MarketplacePreview />
         <SuccessPool />
+        <Manifesto />
       </main>
     </>
   );
