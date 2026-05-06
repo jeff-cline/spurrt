@@ -1,11 +1,12 @@
 import { Nav } from "@/components/nav";
+import { HeroSplit } from "@/components/hero-split";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main id="top" className="min-h-screen">
-        <div className="p-8">Sections coming next.</div>
+      <main id="top">
+        <HeroSplit />
       </main>
     </>
   );
