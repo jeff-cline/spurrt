@@ -6,6 +6,7 @@ import { MarketplacePreview } from "@/components/marketplace-preview";
 import { SuccessPool } from "@/components/success-pool";
 import { Manifesto } from "@/components/manifesto";
 import { WaitlistCta } from "@/components/waitlist-cta";
+import { Faq } from "@/components/faq";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <SuccessPool />
         <Manifesto />
         <WaitlistCta />
+        <Faq />
       </main>
     </>
   );
