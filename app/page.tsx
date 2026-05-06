@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/how-it-works";
 import { MarketplacePreview } from "@/components/marketplace-preview";
 import { SuccessPool } from "@/components/success-pool";
 import { Manifesto } from "@/components/manifesto";
+import { WaitlistCta } from "@/components/waitlist-cta";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <MarketplacePreview />
         <SuccessPool />
         <Manifesto />
+        <WaitlistCta />
       </main>
     </>
   );
