@@ -60,6 +60,21 @@ async function main() {
     console.log("[seed] System Pool user already exists.");
   }
 
+  async function ensureSystemUser(email: string, name: string) {
+    const existing = await db.user.findUnique({ where: { email } });
+    if (!existing) {
+      await db.user.create({
+        data: { email, name, passwordHash: null },
+      });
+      console.log(`[seed] Created system user: ${email}`);
+    } else {
+      console.log(`[seed] System user already exists: ${email}`);
+    }
+  }
+
+  await ensureSystemUser("escrow@spurrt.com", "Escrow");
+  await ensureSystemUser("fees@spurrt.com", "Platform Fees");
+
   await db.$disconnect();
 }
 
