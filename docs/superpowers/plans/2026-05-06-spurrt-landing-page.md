@@ -97,8 +97,8 @@ Write `package.json`:
   },
   "dependencies": {
     "next": "15.0.3",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "zod": "^3.23.8",
     "resend": "^4.0.1"
   },
@@ -106,8 +106,8 @@ Write `package.json`:
     "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/react": "^16.1.0",
     "@types/node": "^22.10.1",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "^25.0.1",
     "tailwindcss": "^4.0.0",
