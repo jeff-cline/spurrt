@@ -74,6 +74,25 @@ async function main() {
 
   await ensureSystemUser("escrow@spurrt.com", "Escrow");
   await ensureSystemUser("fees@spurrt.com", "Platform Fees");
+  await ensureSystemUser("success@spurrt.com", "Spurrts to Success Pool");
+
+  // Seed default categories
+  const defaultCategories = [
+    { name: "Trips", slug: "trips", emoji: "🌅", gradient: "from-amber-700 to-rose-900", order: 1 },
+    { name: "Vacations", slug: "vacations", emoji: "🏝", gradient: "from-sky-700 to-emerald-900", order: 2 },
+    { name: "Stocks", slug: "stocks", emoji: "📈", gradient: "from-emerald-700 to-emerald-950", order: 3 },
+    { name: "Crypto", slug: "crypto", emoji: "◇", gradient: "from-violet-700 to-indigo-950", order: 4 },
+    { name: "Real Estate", slug: "real-estate", emoji: "🏛", gradient: "from-stone-600 to-stone-900", order: 5 },
+    { name: "Boats", slug: "boats", emoji: "⛵", gradient: "from-cyan-700 to-blue-950", order: 6 },
+  ];
+  for (const c of defaultCategories) {
+    await db.category.upsert({
+      where: { slug: c.slug },
+      update: {},
+      create: c,
+    });
+  }
+  console.log(`[seed] Ensured ${defaultCategories.length} default categories.`);
 
   await db.$disconnect();
 }
