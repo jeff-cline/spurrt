@@ -8,9 +8,16 @@ export function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
   const next = params.get("next") || "/admin";
+  const initialError = (() => {
+    const e = params.get("error");
+    if (!e) return null;
+    if (e === "Configuration") return "Server is missing required configuration (AUTH_SECRET, DATABASE_URL). Check server env.";
+    if (e === "CredentialsSignin") return "Invalid email or password.";
+    return `Authentication error: ${e}`;
+  })();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(initialError);
   const [submitting, setSubmitting] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
