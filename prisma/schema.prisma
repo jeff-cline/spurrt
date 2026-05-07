@@ -36,6 +36,13 @@ model User {
   opportunitiesAccepted Opportunity[] @relation("OpportunityAccepter")
   applications          OpportunityApplication[]
 
+  listings              Listing[]              @relation("ListingSeller")
+  purchases             Purchase[]             @relation("PurchaseBuyer")
+  tradesSent            Trade[]                @relation("TradeFrom")
+  tradesReceived        Trade[]                @relation("TradeTo")
+  livesBalance          LivesBalance?
+  livesExchangeRequests LivesExchangeRequest[]
+
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -168,4 +175,90 @@ model OpportunityApplication {
   createdAt     DateTime @default(now())
   @@unique([opportunityId, applicantId])
   @@index([applicantId])
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  emoji     String?
+  gradient  String?
+  order     Int       @default(0)
+  active    Boolean   @default(true)
+  listings  Listing[]
+  createdAt DateTime  @default(now())
+}
+
+model Listing {
+  id          String   @id @default(cuid())
+  sellerId    String
+  seller      User     @relation("ListingSeller", fields: [sellerId], references: [id])
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  title       String
+  description String
+  spurrtPrice Int
+  imageUrl    String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  purchases   Purchase[]
+  @@index([categoryId])
+  @@index([sellerId])
+}
+
+model Purchase {
+  id         String   @id @default(cuid())
+  listingId  String
+  listing    Listing  @relation(fields: [listingId], references: [id])
+  buyerId    String
+  buyer      User     @relation("PurchaseBuyer", fields: [buyerId], references: [id])
+  amount     Int      // spurrts paid (gross)
+  feeAmount  Int      // platform fee portion
+  poolAmount Int      // routed to Spurrts to Success pool
+  createdAt  DateTime @default(now())
+  @@index([buyerId])
+}
+
+model Trade {
+  id          String   @id @default(cuid())
+  fromUserId  String
+  fromUser    User     @relation("TradeFrom", fields: [fromUserId], references: [id])
+  toUserId    String
+  toUser      User     @relation("TradeTo", fields: [toUserId], references: [id])
+  amount      Int
+  note        String?
+  status      String   @default("completed") // v1 always completed (no approval flow)
+  createdAt   DateTime @default(now())
+  @@index([fromUserId])
+  @@index([toUserId])
+}
+
+model LivesBalance {
+  userId    String   @id
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount    Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model LivesExchangeRequest {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  livesAmount Int
+  cryptoAsset String   // "BTC" | "ETH" | etc — free text v1
+  walletAddress String
+  status    String   @default("pending") // pending, fulfilled, cancelled (manual god process v1)
+  notes     String?
+  createdAt DateTime @default(now())
+  @@index([userId])
+}
+
+model SuccessPoolDistribution {
+  id        String   @id @default(cuid())
+  triggeredById String
+  totalDistributed Int
+  totalSpurrtsHeld Int  // basis for proportional split at trigger time
+  recipientCount Int
+  createdAt DateTime @default(now())
 }
