@@ -79,17 +79,19 @@ model VerificationToken {
 
 // Spurrt double-entry ledger
 model LedgerEntry {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  amount    Int      // always positive; sign comes from direction
-  direction String   // "credit" or "debit"
-  category  String   // god_grant, god_deduct, earn, redeem, escrow_lock, escrow_release, platform_fee, success_payout, trade_in, trade_out
-  reference String?
-  notes     String?
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  amount     Int
+  direction  String
+  category   String
+  reference  String?
+  notes      String?
+  transferId String?
+  createdAt  DateTime @default(now())
   @@index([userId])
   @@index([category])
+  @@index([transferId])
 }
 
 // Single-row valuation
