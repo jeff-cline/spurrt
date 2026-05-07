@@ -11,12 +11,20 @@ export function Nav() {
           <a href="#marketplace" className="hover:text-cream transition-colors">Marketplace</a>
           <a href="#faq" className="hover:text-cream transition-colors">FAQ</a>
         </div>
-        <a
-          href="#waitlist"
-          className="inline-flex items-center px-5 py-2 bg-gold text-ink font-medium rounded-full hover:bg-gold-soft transition-colors"
-        >
-          Apply
-        </a>
+        <div className="flex items-center gap-3">
+          <a
+            href="/login"
+            className="hidden sm:inline-flex items-center px-4 py-2 text-sm text-cream-dim hover:text-cream transition-colors"
+          >
+            Log in
+          </a>
+          <a
+            href="#waitlist"
+            className="inline-flex items-center px-5 py-2 bg-gold text-ink font-medium rounded-full hover:bg-gold-soft transition-colors"
+          >
+            Apply
+          </a>
+        </div>
       </div>
     </nav>
   );

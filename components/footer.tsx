@@ -11,6 +11,10 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row gap-8 text-sm text-cream-dim">
           <div className="flex gap-6">
+            <a href="/login" className="hover:text-cream">Log in</a>
+            <a href="#waitlist" className="hover:text-cream">Apply</a>
+          </div>
+          <div className="flex gap-6">
             <a href="#" className="hover:text-cream">X</a>
             <a href="#" className="hover:text-cream">LinkedIn</a>
             <a href="#" className="hover:text-cream">Instagram</a>
