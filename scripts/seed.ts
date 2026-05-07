@@ -45,6 +45,21 @@ async function main() {
     console.log("[seed] Valuation already initialized.");
   }
 
+  const systemEmail = "system@spurrt.com";
+  const systemExists = await db.user.findUnique({ where: { email: systemEmail } });
+  if (!systemExists) {
+    await db.user.create({
+      data: {
+        email: systemEmail,
+        name: "System Pool",
+        passwordHash: null,
+      },
+    });
+    console.log("[seed] Created System Pool user.");
+  } else {
+    console.log("[seed] System Pool user already exists.");
+  }
+
   await db.$disconnect();
 }
 
