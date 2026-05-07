@@ -31,6 +31,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  talentProfile         TalentProfile?
+  opportunitiesPosted   Opportunity[] @relation("OpportunityPoster")
+  opportunitiesAccepted Opportunity[] @relation("OpportunityAccepter")
+  applications          OpportunityApplication[]
+
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -102,4 +107,65 @@ model Valuation {
   totalIssued  Int      @default(0)
   updatedById  String?
   updatedAt    DateTime @updatedAt
+}
+
+model TalentProfile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  headline      String
+  bio           String?
+  skills        String   // JSON-encoded list of strings
+  jobsCompleted Int      @default(0)
+  spurrtsEarned Int      @default(0)
+  lastActiveAt  DateTime @default(now())
+  visible       Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Opportunity {
+  id          String   @id @default(cuid())
+  posterId    String
+  poster      User     @relation("OpportunityPoster", fields: [posterId], references: [id])
+  title       String
+  description String
+  spurrts     Int      // total amount, sum of milestones if any (server enforces)
+  category    String?
+  status      String   @default("open") // open, accepted, in_progress, completed, cancelled
+  accepterId  String?
+  accepter    User?    @relation("OpportunityAccepter", fields: [accepterId], references: [id])
+  acceptedAt  DateTime?
+  completedAt DateTime?
+  cancelledAt DateTime?
+  milestones  Milestone[]
+  applications OpportunityApplication[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([posterId])
+  @@index([status])
+}
+
+model Milestone {
+  id            String   @id @default(cuid())
+  opportunityId String
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  description   String
+  spurrts       Int
+  released      Boolean  @default(false)
+  releasedAt    DateTime?
+  order         Int      @default(0)
+}
+
+model OpportunityApplication {
+  id            String   @id @default(cuid())
+  opportunityId String
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  applicantId   String
+  applicant     User     @relation(fields: [applicantId], references: [id])
+  message       String?
+  status        String   @default("pending") // pending, accepted, declined
+  createdAt     DateTime @default(now())
+  @@unique([opportunityId, applicantId])
+  @@index([applicantId])
 }
