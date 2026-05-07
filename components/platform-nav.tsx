@@ -23,6 +23,8 @@ export async function PlatformNav() {
             <Link href="/talent" className="hover:text-cream">Talent</Link>
             <Link href="/opportunities" className="hover:text-cream">Opportunities</Link>
             <Link href="/marketplace" className="hover:text-cream">Marketplace</Link>
+            <Link href="/account/trade" className="hover:text-cream">Trade</Link>
+            <Link href="/account/lives" className="hover:text-cream">Lives</Link>
             {(user.isGod || user.isAdmin) && (
               <Link href="/admin" className="text-gold hover:text-cream">Admin</Link>
             )}

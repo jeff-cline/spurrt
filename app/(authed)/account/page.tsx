@@ -55,6 +55,26 @@ export default async function AccountDashboard() {
           href="/talent"
           cta="View talent"
         />
+        <ActionCard
+          title="Trade spurrts"
+          body="Send spurrts directly to another member. No fee on peer transfers."
+          href="/account/trade"
+          cta="Trade now"
+        />
+        <ActionCard
+          title="Lives & crypto"
+          body="Your Lives token balance and crypto exchange requests."
+          href="/account/lives"
+          cta="View Lives"
+        />
+        {me.isSupplier && (
+          <ActionCard
+            title="Your listings"
+            body="Manage and create marketplace listings."
+            href="/account/listings"
+            cta="Manage listings"
+          />
+        )}
       </section>
     </div>
   );
